@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>CodeBook.md</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>CodeBook.md</h1>
+
+<p>This document is part of the final project submission for the Coursera class &ldquo;Getting and Cleaning Data&rdquo; organized by John Hopkins University. The purpose of this document is to describe the variables, the data, and any transformations or work that I performed to clean up the data.  </p>
+
+<hr/>
+
+<h2>Final Deliverable</h2>
+
+<p>File &ldquo;Second_Result_Averages.csv&rdquo; contains the final deliverable of this project: this is a tidy data set that can be used for analysis and it was created according to the instructions in the project description.  </p>
+
+<hr/>
+
+<h2>Variable Description</h2>
+
+<p>The final dataset in the project contains the following 89 variables:</p>
+
+<table><thead>
+<tr>
+<th>#</th>
+<th>Variable Name</th>
+<th>Type</th>
+<th>Variable Description</th>
+<th>Metric type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Subject</td>
+<td>factor</td>
+<td>Identifier of the person performing the exercise</td>
+<td>Grouping</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ActivityID</td>
+<td>factor</td>
+<td>Identifier of the activity performed (1 – 6)</td>
+<td>Grouping</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Activity</td>
+<td>factor</td>
+<td>Description of the activity</td>
+<td>Grouping</td>
+</tr>
+<tr>
+<td>4</td>
+<td>T_mean_BodyAcc_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Body Acceleration on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>T_mean_BodyAcc_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Body Acceleration on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>T_mean_BodyAcc_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Body Acceleration on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>T_mean_GravityAcc_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gravity Acceleration on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>T_mean_GravityAcc_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gravity Acceleration on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>T_mean_GravityAcc_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gravity Acceleration on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>T_mean_BodyAccJerk_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Body Acceleration on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>T_mean_BodyAccJerk_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Body Acceleration on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>12</td>
+<td>T_mean_BodyAccJerk_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Body Acceleration on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>T_mean_BodyGyro_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gyroscope on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>14</td>
+<td>T_mean_BodyGyro_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gyroscope on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>15</td>
+<td>T_mean_BodyGyro_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gyroscope on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>16</td>
+<td>T_mean_BodyGyroJerk_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Gyroscope on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>17</td>
+<td>T_mean_BodyGyroJerk_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Gyroscope on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>18</td>
+<td>T_mean_BodyGyroJerk_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Gyroscope on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>19</td>
+<td>T_mean_BodyAccMag</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Body Acceleration</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>20</td>
+<td>T_mean_GravityAccMag</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Gravity Acceleration</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>21</td>
+<td>T_mean_BodyAccJerkMag</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Jerk Signal derived from Body Acceleration</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>22</td>
+<td>T_mean_BodyGyroMag</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Gyroscope</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>23</td>
+<td>T_mean_BodyGyroJerkMag</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Jerk Signal derived from Gyroscope</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>24</td>
+<td>F_mean_BodyAcc_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Body Acceleration on the X direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>25</td>
+<td>F_mean_BodyAcc_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Body Acceleration on the Y direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>26</td>
+<td>F_mean_BodyAcc_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Body Acceleration on the Z direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>27</td>
+<td>F_mean_BodyAccFreq_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Body Acceleration (weighted average of frequency components) on the X direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>28</td>
+<td>F_mean_BodyAccFreq_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Body Acceleration (weighted average of frequency components) on the Y direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>29</td>
+<td>F_mean_BodyAccFreq_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Body Acceleration (weighted average of frequency components) on the Z direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>30</td>
+<td>F_mean_BodyAccJerk_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Body Acceleration on the X direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>31</td>
+<td>F_mean_BodyAccJerk_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Body Acceleration on the Y direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>32</td>
+<td>F_mean_BodyAccJerk_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Body Acceleration on the Z direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>33</td>
+<td>F_mean_BodyAccJerkFreq_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Body Acceleration  (weighted average of frequency components) on the X direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>34</td>
+<td>F_mean_BodyAccJerkFreq_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Body Acceleration  (weighted average of frequency components) on the Y direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>35</td>
+<td>F_mean_BodyAccJerkFreq_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Jerk Signal derived from Body Acceleration  (weighted average of frequency components) on the Z direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>36</td>
+<td>F_mean_BodyGyro_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gyroscope on the X direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>37</td>
+<td>F_mean_BodyGyro_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gyroscope on the Y direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>38</td>
+<td>F_mean_BodyGyro_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gyroscope on the Z direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>39</td>
+<td>F_mean_BodyGyroFreq_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gyroscope  (weighted average of frequency components) on the X direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>40</td>
+<td>F_mean_BodyGyroFreq_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gyroscope  (weighted average of frequency components) on the Y direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>41</td>
+<td>F_mean_BodyGyroFreq_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Gyroscope  (weighted average of frequency components) on the Z direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>42</td>
+<td>F_mean_BodyAccMag</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Body Acceleration</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>43</td>
+<td>F_mean_BodyAccMagFreq</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Body Acceleration (weighted average of frequency components)</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>44</td>
+<td>F_mean_BodyBodyAccJerkMag</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Jerk Signal derived from Body Acceleration</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>45</td>
+<td>F_mean_BodyBodyAccJerkMagFreq</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Jerk Signal derived from Body Acceleration  (weighted average of frequency components)</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>46</td>
+<td>F_mean_BodyBodyGyroMag</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Gyroscope</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>47</td>
+<td>F_mean_BodyBodyGyroMagFreq</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Gyroscope  (weighted average of frequency components)</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>48</td>
+<td>F_mean_BodyBodyGyroJerkMag</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Jerk Signal derived from Gyroscope</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>49</td>
+<td>F_mean_BodyBodyGyroJerkMagFreq</td>
+<td>numeric</td>
+<td>Average of mean measurements for Magnitude of Jerk Signal derived from Gyroscope  (weighted average of frequency components)</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>50</td>
+<td>T_mean_angleBodyAccMeangravity</td>
+<td>numeric</td>
+<td>Average of mean measurements for Angle between Body Acceleration and Gravity</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>51</td>
+<td>T_mean_angleBodyAccJerkMeangravityMean</td>
+<td>numeric</td>
+<td>Average of mean measurements for Angle between Jerk Signal derived from Body Acceleration and Gravity</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>52</td>
+<td>T_mean_angleBodyGyroMeangravityMean</td>
+<td>numeric</td>
+<td>Average of mean measurements for Angle between Gyroscope direction and Gravity</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>53</td>
+<td>T_mean_angleBodyGyroJerkMeangravityMean</td>
+<td>numeric</td>
+<td>Average of mean measurements for Angle between Jerk Signal derived from Gyroscope and Gravity</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>54</td>
+<td>T_mean_anglegravityMean_X</td>
+<td>numeric</td>
+<td>Average of mean measurements for Angle between Coordinate and Gravity on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>55</td>
+<td>T_mean_anglegravityMean_Y</td>
+<td>numeric</td>
+<td>Average of mean measurements for Angle between Coordinate and Gravity on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>56</td>
+<td>T_mean_anglegravityMean_Z</td>
+<td>numeric</td>
+<td>Average of mean measurements for Angle between Coordinate and Gravity on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>57</td>
+<td>T_std_BodyAcc_X</td>
+<td>numeric</td>
+<td>Average of std measurements for Body Acceleration on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>58</td>
+<td>T_std_BodyAcc_Y</td>
+<td>numeric</td>
+<td>Average of std measurements for Body Acceleration on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>59</td>
+<td>T_std_BodyAcc_Z</td>
+<td>numeric</td>
+<td>Average of std measurements for Body Acceleration on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>60</td>
+<td>T_std_GravityAcc_X</td>
+<td>numeric</td>
+<td>Average of std measurements for Gravity Acceleration on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>61</td>
+<td>T_std_GravityAcc_Y</td>
+<td>numeric</td>
+<td>Average of std measurements for Gravity Acceleration on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>62</td>
+<td>T_std_GravityAcc_Z</td>
+<td>numeric</td>
+<td>Average of std measurements for Gravity Acceleration on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>63</td>
+<td>T_std_BodyAccJerk_X</td>
+<td>numeric</td>
+<td>Average of std measurements for Jerk Signal derived from Body Acceleration on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>64</td>
+<td>T_std_BodyAccJerk_Y</td>
+<td>numeric</td>
+<td>Average of std measurements for Jerk Signal derived from Body Acceleration on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>65</td>
+<td>T_std_BodyAccJerk_Z</td>
+<td>numeric</td>
+<td>Average of std measurements for Jerk Signal derived from Body Acceleration on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>66</td>
+<td>T_std_BodyGyro_X</td>
+<td>numeric</td>
+<td>Average of std measurements for Gyroscope on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>67</td>
+<td>T_std_BodyGyro_Y</td>
+<td>numeric</td>
+<td>Average of std measurements for Gyroscope on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>68</td>
+<td>T_std_BodyGyro_Z</td>
+<td>numeric</td>
+<td>Average of std measurements for Gyroscope on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>69</td>
+<td>T_std_BodyGyroJerk_X</td>
+<td>numeric</td>
+<td>Average of std measurements for Jerk Signal derived from Gyroscope on the X direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>70</td>
+<td>T_std_BodyGyroJerk_Y</td>
+<td>numeric</td>
+<td>Average of std measurements for Jerk Signal derived from Gyroscope on the Y direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>71</td>
+<td>T_std_BodyGyroJerk_Z</td>
+<td>numeric</td>
+<td>Average of std measurements for Jerk Signal derived from Gyroscope on the Z direction</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>72</td>
+<td>T_std_BodyAccMag</td>
+<td>numeric</td>
+<td>Average of std measurements for Magnitude of Body Acceleration</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>73</td>
+<td>T_std_GravityAccMag</td>
+<td>numeric</td>
+<td>Average of std measurements for Magnitude of Gravity Acceleration</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>74</td>
+<td>T_std_BodyAccJerkMag</td>
+<td>numeric</td>
+<td>Average of std measurements for Magnitude of Jerk Signal derived from Body Acceleration</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>75</td>
+<td>T_std_BodyGyroMag</td>
+<td>numeric</td>
+<td>Average of std measurements for Magnitude of Gyroscope</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>76</td>
+<td>T_std_BodyGyroJerkMag</td>
+<td>numeric</td>
+<td>Average of std measurements for Magnitude of Jerk Signal derived from Gyroscope</td>
+<td>Time domain signal (t)</td>
+</tr>
+<tr>
+<td>77</td>
+<td>F_std_BodyAcc_X</td>
+<td>numeric</td>
+<td>Average of std measurements for Body Acceleration on the X direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>78</td>
+<td>F_std_BodyAcc_Y</td>
+<td>numeric</td>
+<td>Average of std measurements for Body Acceleration on the Y direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>79</td>
+<td>F_std_BodyAcc_Z</td>
+<td>numeric</td>
+<td>Average of std measurements for Body Acceleration on the Z direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>80</td>
+<td>F_std_BodyAccJerk_X</td>
+<td>numeric</td>
+<td>Average of std measurements for Jerk Signal derived from Body Acceleration on the X direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>81</td>
+<td>F_std_BodyAccJerk_Y</td>
+<td>numeric</td>
+<td>Average of std measurements for Jerk Signal derived from Body Acceleration on the Y direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>82</td>
+<td>F_std_BodyAccJerk_Z</td>
+<td>numeric</td>
+<td>Average of std measurements for Jerk Signal derived from Body Acceleration on the Z direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>83</td>
+<td>F_std_BodyGyro_X</td>
+<td>numeric</td>
+<td>Average of std measurements for Gyroscope on the X direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>84</td>
+<td>F_std_BodyGyro_Y</td>
+<td>numeric</td>
+<td>Average of std measurements for Gyroscope on the Y direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>85</td>
+<td>F_std_BodyGyro_Z</td>
+<td>numeric</td>
+<td>Average of std measurements for Gyroscope on the Z direction</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>86</td>
+<td>F_std_BodyAccMag</td>
+<td>numeric</td>
+<td>Average of std measurements for Magnitude of Body Acceleration</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>87</td>
+<td>F_std_BodyBodyAccJerkMag</td>
+<td>numeric</td>
+<td>Average of std measurements for Magnitude of Jerk Signal derived from Body Acceleration</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>88</td>
+<td>F_std_BodyBodyGyroMag</td>
+<td>numeric</td>
+<td>Average of std measurements for Magnitude of Gyroscope</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+<tr>
+<td>89</td>
+<td>F_std_BodyBodyGyroJerkMag</td>
+<td>numeric</td>
+<td>Average of std measurements for Magnitude of Jerk Signal derived from Gyroscope</td>
+<td>Frequency domain signal (f)</td>
+</tr>
+</tbody></table>
+
+<hr/>
+
+<h2>Data Sources</h2>
+
+<p>These are the input files that were used as source for this project based on the instructions:</p>
+
+<ul>
+<li><strong>Train set:</strong> &#39;train/X_train.txt&#39;</li>
+<li><strong>Test set:</strong> &#39;test/X_test.txt&#39;</li>
+<li><strong>Training labels:</strong> &#39;train/y_train.txt&#39;</li>
+<li><strong>Test labels:</strong> &#39;test/y_test.txt&#39;</li>
+<li><strong>Activity labels:</strong> &#39;activity_labels.txt&#39; (Links the class labels with their activity name.)</li>
+<li><strong>Feature List:</strong> &#39;features.txt&#39;</li>
+<li><strong>Subject Lists (2):</strong> &#39;subject_train.txt&#39; (Each row identifies the subject who performed the activity for each window sample. Two lists exist: one for the Train set and another one for the Test set.)</li>
+</ul>
+
+<hr/>
+
+<h2>Data Processing</h2>
+
+<p>The following are the data processing, transformation, and summarization steps that were performed in order to generate the final deliverable. The R code that implements these steps is in file &ldquo;run_analysis.R&rdquo;.    </p>
+
+<p><strong>1. Loaded all the input files in R Dataframes.</strong> These were the steps followed for that purpose: Read the text of the file into a character vector, split the lines using spaces as separators, removed empty values (if they existed), converted the resulting vector to a matrix with the same number of rows than the input file, and finally transformed the matrix into an R data frame. These steps were followed for all input files individually.<br/>
+<strong>2. Labeled the datasets with descriptive variable names.</strong> For the train and test feature datasets, I used the descriptions imported from the &ldquo;features.txt&rdquo; file as a starting point, and then I improved upon those names (before saving the final results) in order to make those names easier to read and understand. For the rest of the files I assigned my own descriptive names.<br/>
+<strong>3. Added descriptive names to name the activities in the data set.</strong> Used the activity descriptions imported from the &ldquo;activity_labels.txt&rdquo;<br/>
+ file.  Merged those descriptions with the exercise data joining by activity ID.<br/>
+<strong>4. Integrated all the training and testing datasets into one master dataset.</strong> Joined the subject, feature, and activity datasets column-wise. Then joined the resulting training and testing datasets row-wise. The result was a master dataset with 10299 rows x 564 columns.<br/>
+<strong>5. Extracted the measurements on the mean and standard deviation for each measurement.</strong>  Identified those measurement based on the descriptive variable names. Removed all the unnecesary columns from the dataset.  Kept only the grouping factors (subject &amp; activity) plus the variables requested by the project instructions (mean &amp; standard deviation metrics.)  The result was a master dataset with 10299 rown x  89 columns.<br/>
+<strong>6. Created a second, independent tidy data set with the average of each variable for each activity and each subject.</strong>  Aggregated the data by subject and activity (as grouping factors) and applied a mean function to all the remaining fields in the dataset.<br/>
+<strong>7. Saved the result.</strong>  The final deliverable was saved as &ldquo;Second_Result_Averages.csv&rdquo;   </p>
+
+<hr/>
+
+</body>
+
+</html>
+
