@@ -114,12 +114,15 @@ close(con)
 # Label the training and testing datasets with descriptive variable names
 ########################################################################################################################
 
+
 colnames(datTrainSubject) <- c("Subject")
 colnames(datTestSubject)  <- c("Subject")
-colnames(datTrainX)       <- datRootFeatureLabels[,"Feature"]
-colnames(datTestX)        <- datRootFeatureLabels[,"Feature"]
 colnames(datTrainY)       <- c("ActivityID")
 colnames(datTestY)        <- c("ActivityID")
+
+#Using the descriptive names from the feature list as a starting point (these names will be enhanced a bit more before we save)
+colnames(datTrainX)       <- datRootFeatureLabels[,"Feature"]
+colnames(datTestX)        <- datRootFeatureLabels[,"Feature"]
 
 
 ########################################################################################################################
@@ -181,8 +184,9 @@ table(datMaster2$Subject, datMaster2$Activity)
 
 datAverages <- aggregate(. ~ Subject + ActivityID + Activity, data=datMaster2, FUN=mean, na.rm=T)
 #head(datAverages)
+#dim(datAverages)
 
-#Improve the names even more before saving final result
+#Improve the names even more, before saving final result
 colnames(datAverages) <- c(
     "Subject",
     "ActivityID",
@@ -275,6 +279,6 @@ colnames(datAverages) <- c(
     "F_std_BodyBodyGyroJerkMag")
 
 #Save second result
-write.csv(file='./Second_Result_Averages.csv', x=datAverages)
+write.csv(file='./Second_Result_Averages.csv', x=datAverages, row.names=FALSE)
 
 
