@@ -1,14 +1,14 @@
 ########################################################################################################################
-#
-# INSTRUCTIONS:
-# You should create one R script called run_analysis.R that does the following. 
-# 1. Merges the training and the test sets to create one data set.
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
-# 3. Uses descriptive activity names to name the activities in the data set
-# 4. Appropriately labels the data set with descriptive variable names. 
-# 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
-#
-# The names of the files mentioned in the instructions above are (according to documentation "README.txt") :
+# Load relevant files into individual R dataframes
+########################################################################################################################
+
+#Location of files (the data is extracted into the working directory and the subdirectories of the zip file are maintained):
+sLocationRoot  <- "./UCI HAR Dataset"
+sLocationTrain <- "./UCI HAR Dataset/train"
+sLocationTest  <- "./UCI HAR Dataset/test"
+
+
+#Note: According to documentation ("README.txt"), the names of the files mentioned in the instructions above are:
 # - 'train/X_train.txt': Training set.
 # - 'test/X_test.txt': Test set.
 # - 'train/y_train.txt': Training labels.
@@ -17,21 +17,6 @@
 # - 'features.txt': List of all features.
 # - 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
 #    (and a similar file exists for the test directory)
-#
-########################################################################################################################
-
-
-
-
-########################################################################################################################
-# Load relevant files into individual R dataframes
-########################################################################################################################
-
-#Location of files that we need to use
-sLocationRoot  <- "./UCI HAR Dataset"
-sLocationTrain <- "./UCI HAR Dataset/train"
-sLocationTest  <- "./UCI HAR Dataset/test"
-
 
 ##### LOAD ROOT DIRECTORY FILES #####
 
